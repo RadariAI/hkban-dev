@@ -2541,6 +2541,7 @@ input, select, textarea {
 		margin: 0;
 		padding: 0;
 		list-style: none;
+		align-items: center;
 		display: flex;
 		gap: 10px;
 	}
@@ -2557,24 +2558,26 @@ input, select, textarea {
 			text-underline-offset: 0.25em;
 		}
 
-	/* Navigation */
-	#banner {
+/* Navigation */
+#banner {
 		display: flex; /* Use flexbox for alignment */
-		justify-content: right; /* Space between left and right tabs */
-		background-color: #F5F5F5;
+		background-color: #FFFFFF;
 		padding-left: 2em;
 		padding-right: 2em;
-		align-items: center; /* Vertically align tabs */
-		border-bottom: 1px solid #E5E5E5;
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
 	}
 
-	/* Left-aligned tabs */
 	#banner ul {
 		margin: 0;
 		padding: 0;
+		align-items: baseline;
+		justify-content: space-between; /* Space between left and right tabs */
 		list-style: none;
+		padding: 0.5em;
 		display: flex;
-		gap: 10px;
+		gap: 3em;
+		width: 100%;
 	}
 
 		#banner ul > li a {
@@ -2583,33 +2586,63 @@ input, select, textarea {
 			padding: 0.5em;
 		}
 
-		/* Hover and active states */
-		#banner ul > li:hover a {
-			text-decoration: underline;
-			text-underline-offset: 0.25em;
+		#banner ul > li a:hover {
+			text-decoration: underline; /* Add underline on hover */
+			text-underline-offset: 0.25em; /* Adjust underline position */
 		}
 
 /* Dropdown */
-.dropdown {
+ul.dropdown {
 	position: relative;
-	display: inline-block;
-  }
+	cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+	ul.dropdown li p {
+		margin: 0; /* Remove default top and bottom margins */
+		line-height: 1; /* Adjust line height to ensure proper alignment */
+		color: #000000;
+		text-decoration: none;
+		padding: 0.5em;
+	}
+
+	ul.dropdown li {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	/* Image alignment and sizing */
+	ul.dropdown li img {
+		height: 0.5em; /* Match image height to font size */
+		width: auto; /* Maintain aspect ratio */
+		margin-left: 0.5em; /* Add spacing between text and image */
+		vertical-align: middle; /* Ensure alignment to text */
+	}
   
-	.dropdown-content {
-		display: none;
+	ul.dropdown .dropdown-content {
+		opacity: 0;
 		position: absolute;
-		background-color: #BBBBBB;
-		min-width: 160px;
-		max-width: 100vw;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		padding: 12px;
-		z-index: 1;
-		right: -12px;
-		top: calc(100% + 10px);
-		box-sizing: border-box;
+		top: 0.5em;
+		left: 0;
+		background-color: #555555;
+		border-radius: 1em;
+		transition: all .3s ease;
+	}
+
+	ul.dropdown .dropdown-content li {
+		color: #FFFFFF;
+		padding: 1em;
+		border-radius: .5em;
+		cursor: pointer;
+
 	}
 	
-	.dropdown:hover .dropdown-content {
+	ul.dropdown:hover > .dropdown-content {
+		top: 100%;
+		opacity: 1;
+		pointer-events: all;
 		display: block;
 		width: fit-content;
 		text-align: center;
