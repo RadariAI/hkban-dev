@@ -1283,7 +1283,7 @@
 
 		/* Nav */
 
-			#page-wrapper {
+			#main {
 				@include vendor('backface-visibility', 'hidden');
 				@include vendor('transition', 'transform #{_duration(navPanel)} ease');
 				padding-bottom: 1px;
@@ -1393,7 +1393,7 @@
 
 			body {
 				&.navPanel-visible {
-					#page-wrapper {
+					#main {
 						@include vendor('transform', 'translateX(#{_size(navPanel)})');
 					}
 
