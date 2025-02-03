@@ -40,7 +40,7 @@
 					</div>
 					<a href="">News and Media</a>
 					<a href="">Contact Us</a>
-					<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+					<a href="javascript:void(0);" class="toggle-icon" onclick="navtolink()">&#9776;</a>
 				</nav>
 
 		</div>
@@ -105,11 +105,23 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				function toggleNavBanner() {
+					const banner = document.getElementById("banner");
+					// Toggle between adding and removing the "responsive" class
+					banner.classList.toggle("responsive");
+				}
+			</script>
+			<script>
+				function navtolink() {
+					// Replace the URL with the desired target page
+					window.location.href = "members.html";
+				}
+			</script>
 
 	</body>
 </html>
