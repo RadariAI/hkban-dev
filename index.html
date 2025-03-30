@@ -10,37 +10,40 @@
 		<div id="header">
 
 			<!-- Sitemap nav -->
-				<nav id="nav">
+			<!-- 	<nav id="nav">
 					<ul>
 						<li><a href="#">Sitemap</a></li>
 					</ul>
-				</nav>
+				</nav> -->
 
 			<!-- Header Banner -->
 				<nav id="banner">
-					<a href="index.html">
+					<a href="index.html" class="logo-wrapper">
 						<img id="logo" src="./images/logo.png" alt="Logo">
 					</a>
-					<div class="dropdown">
-						<a href="members.html">About Us</a>
-						<img src="./images/down.png" alt="">
-					</div>
-					<div class="dropdown">
-						<a>Investors</a>
-						<img src="./images/down.png" alt="">
-					</div>
+					<div class="nav-tabs">
+						<div class="dropdown">
+							<a href="members.html">About Us</a>
+							<img src="./images/down_grey.png" alt="">
+							<div class="dropdown-menu">
+								<a href="#">Introduction</a>
+								<a href="#">Importance of Venture and Angel Investments</a>
+								<a href="#">Board of Directors</a>
+								<a href="#">Secretariat and Patron</a>
+								<a href="#">Strategic Partner Organization</a>
+							</div>
+						</div>
+						<div class="dropdown">
+							<a>Investors</a>
+							<img src="./images/down_grey.png" alt="">
+							<div class="dropdown-menu">
+								<a href="#">Membership</a>
+							</div>
+						</div>
 
-					<div class="dropdown">
-						<a>Entrepreneurs</a>
-						<img src="./images/down.png" alt="">
+						<a href="">Contact Us</a>
+						<a href="javascript:void(0);" class="toggle-icon" onclick="navtolink()">&#9776;</a>
 					</div>
-					<div class="dropdown">
-						<a>Activities</a>
-						<img src="./images/down.png" alt="">
-					</div>
-					<a href="">News and Media</a>
-					<a href="">Contact Us</a>
-					<a href="javascript:void(0);" class="toggle-icon" onclick="navtolink()">&#9776;</a>
 				</nav>
 
 		</div>
@@ -91,24 +94,23 @@
         </div> -->
 
 		<div id="footer">
-			<div class="info-wrap">
-				<p style="font-size: 18px;color: #FFFFFF;font-weight: normal;">Hong Kong Business Angel Network</p>
-				<p>
-					<a href="#">Disclaimer</a>&nbsp;|&nbsp;<a href="#">Privacy Statement</a>&nbsp;|&nbsp;<a href="#">Personal Data Collection Statement</a>
-				</p>
-			</div>
-			<hr class="solid">
-			<div class="copyright">
-				<p>© 2025 Hong Kong Business Angel Network All Rights Reserved</p>
-				<p>Powered by Radari AI</p>
+			<div class="footer-content">
+				<div class="info-wrap">
+					<p style="font-size: 18px;color: #FFFFFF;font-weight: normal;">Hong Kong Business Angel Network</p>
+					<p>
+						<a href="#">Disclaimer</a>&nbsp;|&nbsp;<a href="#">Privacy Statement</a>&nbsp;|&nbsp;<a href="#">Personal Data Collection Statement</a>
+					</p>
+				</div>
+				<hr class="solid">
+				<div class="copyright">
+					<p>© 2025 Hong Kong Business Angel Network All Rights Reserved</p>
+					<p>Powered by Radari AI</p>
+				</div>
 			</div>
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+
 			<script>
 				function toggleNavBanner() {
 					const banner = document.getElementById("banner");
