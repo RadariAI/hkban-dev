@@ -18,51 +18,64 @@
 
 			<!-- Header Banner -->
 				<nav id="banner">
-					<a href="index.html" class="logo-wrapper">
-						<img id="logo" src="./images/logo.png" alt="Logo">
+					<a href="/index" class="logo-wrapper">
+						<img id="logo" src="./images/new_logo.png" alt="Logo">
 					</a>
 					<div class="nav-tabs">
 						<div class="dropdown">
-							<a href="members.html">About Us</a>
+							<a href="javascript:void(0);" class="dropdown-toggle" onclick="toggleDropdown(this)">About Us</a>
 							<img src="./images/down_grey.png" alt="">
 							<div class="dropdown-menu">
-								<a href="#">Introduction</a>
-								<a href="#">Importance of Venture and Angel Investments</a>
-								<a href="#">Board of Directors</a>
-								<a href="#">Secretariat and Patron</a>
-								<a href="#">Strategic Partner Organization</a>
+								<a href="/introduction">Introduction</a>
+								<a href="/importance-of-venture-and-angel-investments">Importance of Venture and Angel Investments</a>
+								<a href="/board-of-directors">Board of Directors</a>
+								<a href="/secretariat-and-patron">Secretariat and Patron</a>
+								<a href="/strategic-partner-organizations">Strategic Partner Organizations</a>
 							</div>
 						</div>
 						<div class="dropdown">
-							<a>Investors</a>
+							<a href="javascript:void(0);" class="dropdown-toggle" onclick="toggleDropdown(this)">Investors</a>
 							<img src="./images/down_grey.png" alt="">
 							<div class="dropdown-menu">
-								<a href="#">Membership</a>
+								<a href="/membership">Membership</a>
 							</div>
 						</div>
 
-						<a href="">Contact Us</a>
-						<a href="javascript:void(0);" class="toggle-icon" onclick="navtolink()">&#9776;</a>
+						<a href="/contact-us">Contact Us</a>
 					</div>
+					<a href="javascript:void(0);" class="toggle-icon" onclick="toggleNav()">&#9776;</a>
 				</nav>
 
 		</div>
 
 		<div class="landing-wrapper">
-            <img src="./images/landing.png" alt="">
-            <div class="description-bar">
-                <p>To Build A Vibrant Investment Community in Hong Kong</p>
+			<div class="slideshow">
+				<div class="slides">
+					<img src="./images/landing1.jpg" alt="Slide 1" class="slide">
+					<img src="./images/landing2.jpeg" alt="Slide 2" class="slide">
+					<img src="./images/landing3.jpeg" alt="Slide 3" class="slide">
+					<img src="./images/landing4.jpeg" alt="Slide 4" class="slide">
+					<img src="./images/landing5.jpeg" alt="Slide 5" class="slide">
+					<img src="./images/landing6.jpeg" alt="Slide 6" class="slide">
+					<img src="./images/landing7.jpeg" alt="Slide 7" class="slide">
+				</div>
+				<!-- Navigation Arrows -->
+				<button class="arrow prev-arrow">&#9664;</button>
+				<button class="arrow next-arrow">&#9654;</button>
+			</div>
+			<div class="description-bar">
+                <p>Empowering Innovation and Catalyzing Growth Through Investment</p>
             </div>
-        </div>
+		</div>
 
-		<div class="section-wrapper" style="background-color: rgba(244, 244, 244);">
+		<!-- <div class="section-wrapper" style="background-color: rgba(244, 244, 244);">
 			<div class="row">
 				<div class="col-8">
 					<img src="./images/handshake.png" alt="">
 				</div>
 				<div class="col-4">
 					<h3>Business Angel</h3>
-					<p>After login, HKBAN members can establish a close relationship with other members. As HKBAN members are from various fields, members can interact with each other and learn from each other more easily. Members’ information can be found here.</p>
+					<p>HKBAN members can establish a close relationship with other members. As HKBAN members are from various fields, members can interact with each other and learn from each other more easily. Members’ information can be found here.</p>
 					<p>Moreover, HKBAN Members can view the relevant information provided by the Startups, discover investment opportunity and contact them directly. Startups’ information can be found here.</p>
 				</div>
 			</div>
@@ -79,7 +92,7 @@
 					<p>Currently HKBAN only accepts submissions from nominations of members and partner organizations. You can update your profile and submissions here after being registered.</p>
 				</div>
 			</div>
-        </div>
+        </div> -->
 
         <!-- <div class="section-wrapper" style="background-color: rgba(244, 244, 244);">
 
@@ -96,34 +109,22 @@
 		<div id="footer">
 			<div class="footer-content">
 				<div class="info-wrap">
-					<p style="font-size: 18px;color: #FFFFFF;font-weight: normal;">Hong Kong Business Angel Network</p>
+					<p style="font-size: 18px;color: #FFFFFF;font-weight: normal;">Hong Kong Venture Investment and Business Angel Network</p>
 					<p>
-						<a href="#">Disclaimer</a>&nbsp;|&nbsp;<a href="#">Privacy Statement</a>&nbsp;|&nbsp;<a href="#">Personal Data Collection Statement</a>
+						<a href="/disclaimer">Disclaimer</a>&nbsp;|&nbsp;<a href="/privacy-policy-statement">Privacy Statement</a>&nbsp;|&nbsp;<a href="/personal-data-collection-statement">Personal Data Collection Statement</a>
 					</p>
 				</div>
 				<hr class="solid">
 				<div class="copyright">
-					<p>© 2025 Hong Kong Business Angel Network All Rights Reserved</p>
-					<p>Powered by Radari AI</p>
+					<p>© 2025 Hong Kong Venture Investment and Business Angel Network All Rights Reserved</p>
+					<p>Powered by <a href="https://radari.ai/">Radari AI</a></p>
 				</div>
 			</div>
 		</div>
 
 		<!-- Scripts -->
 
-			<script>
-				function toggleNavBanner() {
-					const banner = document.getElementById("banner");
-					// Toggle between adding and removing the "responsive" class
-					banner.classList.toggle("responsive");
-				}
-			</script>
-			<script>
-				function navtolink() {
-					// Replace the URL with the desired target page
-					window.location.href = "members.html";
-				}
-			</script>
+			<script src="./js/scripts.js"></script>
 
 	</body>
 </html>

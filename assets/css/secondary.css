@@ -71,6 +71,11 @@ input, select, textarea {
 	appearance: none;
 }
 
+/* Specific: Remove clicking flash response */
+a, .dropdown-toggle, .nav-tabs, .dropdown-menu {
+    -webkit-tap-highlight-color: transparent; /* Remove blue flash */
+}
+
 /* Basic */
 
 	html {
@@ -125,7 +130,7 @@ input, select, textarea {
 		font-style: italic;
 	}
 
-	p, ul, ol, dl, table, blockquote {
+	p, ol, dl, table, blockquote {
 		margin: 0 0 2em 0;
 	}
 
@@ -217,46 +222,6 @@ input, select, textarea {
 
 #header {
     text-align: center; /* Center-aligns the entire header content */
-}
-
-	/* Navigation */
-	#nav {
-		display: flex; /* Use flexbox for alignment */
-		justify-content: right; /* Space between left and right tabs */
-		background-color: #F5F5F5;
-		padding-left: 2em;
-		padding-right: 2em;
-		align-items: center; /* Vertically align tabs */
-		border-bottom: 1px solid #c0b2b2;
-	}
-
-	#nav .icon {
-		display: none;
-	}
-
-	#nav ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		align-items: center;
-		display: flex;
-		gap: 0;
-	}
-
-		#nav ul > li {
-			display: inline-block;
-		}
-
-		#nav ul > li a {
-			color: #000000;
-			text-decoration: none;
-			padding: 0.5em;
-		}
-
-		/* Hover and active states */
-		#nav ul > li:hover a {
-			text-decoration: underline;
-			text-underline-offset: 0.25em;
 		}
 
 /* Navigation */
@@ -277,10 +242,10 @@ input, select, textarea {
 	margin-right: 2em; /* Custom gap between logo and tabs */
 }
 
-	#banner #logo {
+	#logo {
 		height: 100%;
 		width: auto;
-		max-width: 300px;
+		max-width: 450px;
 		object-fit: contain;
 		align-self: flex-start;
 	}
@@ -295,7 +260,7 @@ input, select, textarea {
     flex-grow: 1; /* Allow tabs to take remaining space */
 }
 
-	#banner a {
+	.nav-tabs a {
 		display: flex;
 		align-items: center;
 		padding: 0 0.5em;
@@ -306,11 +271,11 @@ input, select, textarea {
 		text-decoration: none;
 	}
 
-	#banner a:hover {
+	.nav-tabs a:hover {
 		color: #3F96E2;
 	}
 
-	#banner .toggle-icon {
+	.nav-tabs .toggle-icon {
 		display: none;
 	}
 
@@ -318,7 +283,7 @@ input, select, textarea {
 .dropdown {
 	display: flex;
 	align-items: center;
-	padding: 0 0.5em 10px 0.5em;
+	padding: 0 0.5em;
 	cursor: pointer;
     margin: 0;
 	position: relative;
@@ -349,8 +314,9 @@ input, select, textarea {
 	.dropdown-menu a {
 		display: block; /* Stack links vertically */
 		padding: 0.75em 1em; /* Increased padding for more height */
-		color: #000000; /* Text color */
+		color: #666; /* Text color */
 		text-decoration: none; /* No underline */
+		text-align: left;
 		border-bottom: 1px solid #666; /* Grey divider below each item */
 		min-height: 40px; /* Fixed minimum height for each item */
     	box-sizing: border-box; /* Ensures padding fits within height */
@@ -373,21 +339,24 @@ input, select, textarea {
 		border-bottom: none;
 	}
 
-	/* Show the dropdown menu on hover */
-	.dropdown:hover .dropdown-menu {
-		display: block; /* Show when parent .dropdown is hovered */
-	}
+/* Toggle Icon */
+.toggle-icon {
+    display: none; /* Hidden on desktop */
+	color: #474747;
+}
+
 
 /* Container */
 
 #container-wrapper {
     width: 100%;
     background-color: #F4F4F4;
-    padding: 10px 0;
+    padding: 10px 20px;
 }
 
 .container {
     margin: 0 auto;
+	padding-bottom: 2em;
     width: 100%;
     max-width: 1220px;
     background-color: #FFFFFF;
@@ -407,9 +376,19 @@ input, select, textarea {
 }
 
 .container ul > li p {
-    margin-top: 1em;
     text-align: justify;
-    font-size: 1em;
+}
+
+/* Nested bullet list */
+.container .bullet-list {
+	padding-top: 0;
+    list-style-type: disc; /* Standard bullet points */
+    padding-left: 2em; /* Indent bullets */
+}
+
+.container .bullet-list li {
+    margin-top: 0.5em; /* Space between bullet items */
+    text-align: justify; /* Match p alignment */
 }
 
 /* Directory */
@@ -465,6 +444,28 @@ input, select, textarea {
 
 #directory a.prev-dir:hover .home-blue {
     display: inline;
+}
+
+/* Table Styling */
+.container table {
+    width: auto; /* Shrink to content width */
+    max-width: 100%; /* Prevent overflow */
+    margin: 0 auto; /* Center the table horizontally */
+	margin-bottom: 2em;
+    padding: 30px 6em; /* Keep padding around the table */
+}
+
+.container td {
+    text-align: left; /* Align images left */
+	vertical-align: middle; /* Center images vertically */
+    padding: 20px; /* Remove internal padding, rely on border-spacing */
+}
+
+/* Table Images */
+.table-image {
+    width: 180px; /* Consistent width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below images */
 }
 
 /* Footer */
@@ -530,6 +531,16 @@ input, select, textarea {
 			margin: 0 0.5em;
 		}
 
+		#footer .copyright p a {
+			font-size: 14px;
+			color: #FFFFFF;
+			display: inline-block;
+			margin-block-start: 1em;
+			margin-block-end: 1em;
+			margin-inline-start: 0px;
+			margin-inline-end: 0px;
+		}
+
 	/* Wide */
 	@media only screen and (min-width: 1401px) {
 		body {
@@ -553,6 +564,15 @@ input, select, textarea {
 			margin: 0 auto; /* Center with no side margins */
 			max-width: 1220px;
 		}
+
+		.dropdown {
+			padding: 0 0.5em 10px 0.5em;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-menu {
+			display: block; /* Show when parent .dropdown is hovered */
+		}
 	}
 
 	/* Medium Wide */
@@ -571,7 +591,7 @@ input, select, textarea {
 		}
 
 		#banner #logo {
-			max-width: 200px;
+			max-width: 400px;
 		}
 
         #container-wrapper {
@@ -583,6 +603,15 @@ input, select, textarea {
             max-width: 1220px; /* Still caps at 1220px */
             margin: 0 auto;
         }
+
+		.dropdown {
+			padding: 0 0.5em 10px 0.5em;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-menu {
+			display: block; /* Show when parent .dropdown is hovered */
+		}
 	}
 
 	/* Medium */
@@ -598,7 +627,6 @@ input, select, textarea {
 		#banner {
 			margin: 0 60px; /* Keep consistent with other elements */
 			max-width: 1220px; /* Maintain max-width */
-			padding: 2em 0; /* Consistent padding */
 			display: flex;
 			flex-direction: column; /* Stack logo and tabs vertically */
 			align-items: flex-start; /* Align to the left */
@@ -616,7 +644,7 @@ input, select, textarea {
 		}
 
 		#banner #logo {
-			max-width: 200px;
+			max-width: 300px;
 		}
 
         #container-wrapper {
@@ -628,58 +656,164 @@ input, select, textarea {
             max-width: 1220px; /* Still caps at 1220px */
             margin: 0 auto;
         }
+
+		.dropdown {
+			padding: 0 0.5em 10px 0.5em;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-menu {
+			display: block; /* Show when parent .dropdown is hovered */
+		}
 	}
 
 	/* Media Query for Mobile Devices */
 	@media only screen and (max-width: 768px) {
-		#header #nav {
-			display: none;
+		body {
+			font-size: 12pt;
 		}
 
-		#header #banner {
-			padding: 10px;
+		#banner {
 			margin: 0;
-			height: 80px;
-			justify-content: space-between;
-			align-items: center;
+			padding: 10px;
+			height: 80px; /* Fixed height for logo and toggle */
 			position: relative;
 		}
-
-		#header #banner a:not(:first-child), .dropdown {
-			display: none;
-		}
-
-		#header #banner #logo {
-			height: 50%;
+	
+		#logo {
+			height: 50%; /* 40px in an 80px banner */
 			position: absolute;
 			left: 20px;
-			top: 20px;
+			top: 50%; /* Center vertically */
+			transform: translateY(-50%); /* Adjust for true center */
 		}
-
-		#header #banner.responsive a {
-			display: block;
+	
+		.nav-tabs {
+			display: none; /* Hidden by default */
+			position: absolute;
+			top: 80px;
+			left: 0;
 			width: 100%;
+			background-color: #FFFFFF;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 0 2em 1em 2em; /* Space below logo and toggle */
+			z-index: 999; /* Below banner but above content */
+			transition: transform 0.3s ease-in-out; /* Animation for main menu */
+    		transform: translateY(-100%); /* Start off-screen */
+		}
+	
+		.nav-tabs.active {
+			display: flex; /* Show when toggled */
+			transform: translateY(0); /* Slide in */
+			gap: 0;
 		}
 
-		#header #banner a.toggle-icon {
+		.nav-tabs a:hover {
+			color: #666;
+		}
+	
+		.toggle-icon {
 			display: block;
 			position: absolute;
 			right: 20px;
-			top: 30px;
-			width: min-content;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 1001;
 		}
 
-		/* Responsive styles for mobile view */
-		#banner.responsive {
-			position: relative;
-			display: flex;
-			flex-wrap: wrap;
-			height: fit-content;
-		}
-
-		#banner.responsive .dropdown {
-			display: block;
+		/* Higher-Level Items */
+		.nav-tabs > a {
 			width: 100%;
+			margin: 0;
+			padding: 0.5em 0.5em; /* Vertical spacing */
+			border-bottom: 1px solid #e0e0e0; /* Divider between top-level items */
+		}
+
+		.nav-tabs > .dropdown {
+			width: 100%;
+			margin: 0;
+			padding: 0.5em 0; /* Vertical spacing */
+			border-bottom: 1px solid #e0e0e0; /* Divider between top-level items */
+		}
+
+		/* Remove divider from last top-level item */
+		.nav-tabs > a:last-child,
+		.nav-tabs > .dropdown:last-child {
+			border-bottom: none;
+		}
+	
+		.nav-tabs .dropdown {
+			width: 100%;
+			margin: 0;
+			padding: 0.5em 0; /* Vertical spacing */
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	
+		.nav-tabs .dropdown img {
+			display: none; /* Hide arrow */
+		}
+	
+		.nav-tabs .dropdown-menu {
+			display: none;
+			position: static;
+			width: 100%;
+			text-wrap: wrap;
+			box-shadow: none;
+			border-top: none;
+			background-color: #FFFFFF;
+			transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Animation */
+			max-height: 0; /* Collapsed state */
+			opacity: 0; /* Fade out */
+			overflow: hidden; /* Hide content when collapsed */
+		}
+
+		.nav-tabs .dropdown-menu.active {
+			padding: 0.5em 1em 0 1em;
+			display: block; /* Show when toggled */
+			max-height: 500px; /* Large enough for all sub-tabs; adjust if needed */
+    		opacity: 1; /* Fade in */
+		}
+	
+		.nav-tabs .dropdown-menu a {
+			font-size: 0.75em;
+			padding: 0.5em 1em; /* Vertical spacing, no side padding */
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			border-bottom: 0.5px solid #e0e0e0;
+		}
+
+		.nav-tabs .dropdown-menu > a:last-child {
+			border-bottom: none;
+		}
+	
+		.nav-tabs a {
+			width: 100%;
+		}
+
+		.container ul {
+			padding: 30px 2em;
+		}
+
+		/* Table Styling */
+		.container table {
+			width: 100%; /* Shrink to content width */
+			margin-bottom: 2em;
+			padding: 20px 6em; /* Keep padding around the table */
+		}
+
+		.container td {
+			padding: 20px; /* Reduced padding for mobile */
+			width: 20%;
+			box-sizing: border-box; /* Include padding in width */
+		}
+	
+		.table-image {
+			width: 100%; /* Image fills td width */
+			max-width: none; /* Remove fixed width constraint */
+			height: auto; /* Maintain aspect ratio */
 		}
 
 		#footer {

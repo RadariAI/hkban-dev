@@ -71,6 +71,11 @@ input, select, textarea {
 	appearance: none;
 }
 
+/* Specific: Remove clicking flash response */
+a, .dropdown-toggle, .nav-tabs, .dropdown-menu {
+    -webkit-tap-highlight-color: transparent; /* Remove blue flash */
+}
+
 /* Basic */
 
 	html {
@@ -231,7 +236,7 @@ input, select, textarea {
 		display: flex;
 		flex-wrap: nowrap;
 		box-sizing: border-box;
-		gap: 15px;
+		gap: 20px;
 	}
 
 		.row > * {
@@ -257,30 +262,68 @@ input, select, textarea {
 .landing-wrapper {
 	margin: 30px 150px;
 	position: relative;
-	height: fit-content;
+	overflow: hidden;
 }
 
-.landing-wrapper img {
-	max-width: 100%;
-    object-fit: cover;
+/* Slideshow Container */
+.slideshow {
+    width: 100%; /* Take full width of landing-wrapper */
+    aspect-ratio: 16 / 9; /* Set desired aspect ratio (e.g., 16:9) */
+    position: relative;
 }
 
-.landing-wrapper .description-bar {
-	position: absolute;
-	bottom: 0.5em;
-	left: 0;
-	width: 100%;
-	height: 2.5em;
-	background: rgba(0, 0, 0, 0.5);
-	text-align: start;
-	z-index: 1;
+/* Slides Track */
+.slides {
+    display: flex; /* Horizontal layout */
+    width: 700%; /* 7 images × 100% */
+    height: 100%;
 }
 
-.landing-wrapper .description-bar p {
-	font-size: 1em;
-	margin: 0 0.5em;
-	line-height: 2.5em;
-	color: #FFFFFF;
+/* Individual Slides */
+.slide {
+    width: 14.3%; /* Each image takes 1/7 of slides width */
+    height: 100%;
+    object-fit: cover; /* Fill space without distortion */
+}
+
+/* Arrow Buttons */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10; /* Ensure arrows are above slides */
+}
+
+.arrow:hover {
+    background: rgba(0, 0, 0, 0.8); /* Darken on hover */
+}
+
+.prev-arrow {
+    left: 10px; /* Position on the left side */
+}
+
+.next-arrow {
+    right: 10px; /* Position on the right side */
+}
+
+/* Description Bar */
+.description-bar {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.description-bar p {
+	margin: 1em 0;
 }
 
 /* Section Wrapper */
@@ -329,46 +372,6 @@ input, select, textarea {
     text-align: center; /* Center-aligns the entire header content */
 }
 
-	/* Navigation */
-	#nav {
-		display: flex; /* Use flexbox for alignment */
-		justify-content: right; /* Space between left and right tabs */
-		background-color: #F5F5F5;
-		padding-left: 2em;
-		padding-right: 2em;
-		align-items: center; /* Vertically align tabs */
-		border-bottom: 1px solid #c0b2b2;
-	}
-
-	#nav .icon {
-		display: none;
-	}
-
-	#nav ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		align-items: center;
-		display: flex;
-		gap: 0;
-	}
-
-		#nav ul > li {
-			display: inline-block;
-		}
-
-		#nav ul > li a {
-			color: #000000;
-			text-decoration: none;
-			padding: 0.5em;
-		}
-
-		/* Hover and active states */
-		#nav ul > li:hover a {
-			text-decoration: underline;
-			text-underline-offset: 0.25em;
-		}
-
 /* Navigation */
 #banner {
     margin: 0 50px; /* Match landing-wrapper’s default margins */
@@ -379,6 +382,8 @@ input, select, textarea {
     background-color: #FFFFFF;
     padding: 2em 0 0 0; /* Vertical padding only, no horizontal */
     box-sizing: border-box;
+	position: relative;
+	z-index: 1000;
 }
 
 /* Logo Wrapper */
@@ -387,7 +392,7 @@ input, select, textarea {
 	margin-right: 2em; /* Custom gap between logo and tabs */
 }
 
-	#banner #logo {
+	#logo {
 		height: 100%;
 		width: auto;
 		max-width: 450px;
@@ -405,7 +410,7 @@ input, select, textarea {
     flex-grow: 1; /* Allow tabs to take remaining space */
 }
 
-	#banner a {
+	.nav-tabs a {
 		display: flex;
 		align-items: center;
 		padding: 0 0.5em;
@@ -416,11 +421,11 @@ input, select, textarea {
 		text-decoration: none;
 	}
 
-	#banner a:hover {
+	.nav-tabs a:hover {
 		color: #3F96E2;
 	}
 
-	#banner .toggle-icon {
+	.nav-tabs .toggle-icon {
 		display: none;
 	}
 
@@ -428,7 +433,7 @@ input, select, textarea {
 .dropdown {
 	display: flex;
 	align-items: center;
-	padding: 0 0.5em 10px 0.5em;
+	padding: 0 0.5em;
 	cursor: pointer;
     margin: 0;
 	position: relative;
@@ -459,8 +464,9 @@ input, select, textarea {
 	.dropdown-menu a {
 		display: block; /* Stack links vertically */
 		padding: 0.75em 1em; /* Increased padding for more height */
-		color: #000000; /* Text color */
+		color: #666; /* Text color */
 		text-decoration: none; /* No underline */
+		text-align: left;
 		border-bottom: 1px solid #666; /* Grey divider below each item */
 		min-height: 40px; /* Fixed minimum height for each item */
     	box-sizing: border-box; /* Ensures padding fits within height */
@@ -483,10 +489,11 @@ input, select, textarea {
 		border-bottom: none;
 	}
 
-	/* Show the dropdown menu on hover */
-	.dropdown:hover .dropdown-menu {
-		display: block; /* Show when parent .dropdown is hovered */
-	}
+/* Toggle Icon */
+.toggle-icon {
+    display: none; /* Hidden on desktop */
+	color: #474747;
+}
 
 /* Footer */
 
@@ -551,6 +558,16 @@ input, select, textarea {
 			margin: 0 0.5em;
 		}
 
+		#footer .copyright p a {
+			font-size: 14px;
+			color: #FFFFFF;
+			display: inline-block;
+			margin-block-start: 1em;
+			margin-block-end: 1em;
+			margin-inline-start: 0px;
+			margin-inline-end: 0px;
+		}
+
 	/* Wide */
 	@media only screen and (min-width: 1401px) {
 		body {
@@ -602,6 +619,15 @@ input, select, textarea {
 			line-height: 1.4;
 		}
 
+		.dropdown {
+			padding: 0 0.5em 10px 0.5em;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-menu {
+			display: block; /* Show when parent .dropdown is hovered */
+		}
+
 		.footer-content {
 			margin: 0 auto; /* Center with no side margins */
 			max-width: 1220px;
@@ -641,6 +667,15 @@ input, select, textarea {
 		
 		.section-wrapper > .row .col-4 {
 			height: 400px;
+		}
+
+		.dropdown {
+			padding: 0 0.5em 10px 0.5em;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-menu {
+			display: block; /* Show when parent .dropdown is hovered */
 		}
 	}
 
@@ -692,57 +727,136 @@ input, select, textarea {
 		.section-wrapper > .row .col-4 {
 			height: 400px;
 		}
+
+		.dropdown {
+			padding: 0 0.5em 10px 0.5em;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-menu {
+			display: block; /* Show when parent .dropdown is hovered */
+		}
 	}
 
 	/* Media Query for Mobile Devices */
 	@media only screen and (max-width: 768px) {
-		#header #nav {
-			display: none;
-		}
-
-		#header #banner {
-			padding: 10px;
+		#banner {
 			margin: 0;
-			height: 80px;
-			justify-content: space-between;
-			align-items: center;
+			padding: 10px;
+			height: 80px; /* Fixed height for logo and toggle */
 			position: relative;
 		}
-
-		#header #banner a:not(:first-child), .dropdown {
-			display: none;
-		}
-
-		#header #banner #logo {
-			height: 50%;
+	
+		#logo {
+			height: 50%; /* 40px in an 80px banner */
 			position: absolute;
 			left: 20px;
-			top: 20px;
+			top: 50%; /* Center vertically */
+			transform: translateY(-50%); /* Adjust for true center */
 		}
-
-		#header #banner.responsive a {
-			display: block;
+	
+		.nav-tabs {
+			display: none; /* Hidden by default */
+			position: absolute;
+			top: 80px;
+			left: 0;
 			width: 100%;
+			background-color: #FFFFFF;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 0 2em 1em 2em; /* Space below logo and toggle */
+			z-index: 999; /* Below banner but above content */
+			transition: transform 0.3s ease-in-out; /* Animation for main menu */
+    		transform: translateY(-100%); /* Start off-screen */
+		}
+	
+		.nav-tabs.active {
+			display: flex; /* Show when toggled */
+			transform: translateY(0); /* Slide in */
+			gap: 0;
 		}
 
-		#header #banner a.toggle-icon {
+		.nav-tabs a:hover {
+			color: #666;
+		}
+	
+		.toggle-icon {
 			display: block;
 			position: absolute;
 			right: 20px;
-			top: 30px;
-			width: min-content;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 1001;
 		}
 
-		/* Responsive styles for mobile view */
-		#banner.responsive {
-			position: relative;
+		/* Higher-Level Items */
+		.nav-tabs > a {
+			width: 100%;
+			margin: 0;
+			padding: 0.5em 0.5em; /* Vertical spacing */
+			border-bottom: 1px solid #e0e0e0; /* Divider between top-level items */
+		}
+
+		.nav-tabs > .dropdown {
+			width: 100%;
+			margin: 0;
+			padding: 0.5em 0; /* Vertical spacing */
+			border-bottom: 1px solid #e0e0e0; /* Divider between top-level items */
+		}
+
+		/* Remove divider from last top-level item */
+		.nav-tabs > a:last-child,
+		.nav-tabs > .dropdown:last-child {
+			border-bottom: none;
+		}
+	
+		.nav-tabs .dropdown {
+			width: 100%;
+			margin: 0;
+			padding: 0.5em 0; /* Vertical spacing */
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	
+		.nav-tabs .dropdown img {
+			display: none; /* Hide arrow */
+		}
+	
+		.nav-tabs .dropdown-menu {
+			display: none;
+			position: static;
+			width: 100%;
+			text-wrap: wrap;
+			box-shadow: none;
+			border-top: none;
+			background-color: #FFFFFF;
+			transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Animation */
+			max-height: 0; /* Collapsed state */
+			opacity: 0; /* Fade out */
+			overflow: hidden; /* Hide content when collapsed */
+		}
+
+		.nav-tabs .dropdown-menu.active {
+			padding: 0.5em 1em 0 1em;
+			display: block; /* Show when toggled */
+			max-height: 500px; /* Large enough for all sub-tabs; adjust if needed */
+    		opacity: 1; /* Fade in */
+		}
+	
+		.nav-tabs .dropdown-menu a {
+			font-size: 0.75em;
+			padding: 0.5em 1em; /* Vertical spacing, no side padding */
+			text-decoration: none;
 			display: flex;
-			flex-wrap: wrap;
-			height: fit-content;
+			align-items: center;
+			border-bottom: 0.5px solid #e0e0e0;
 		}
 
-		#banner.responsive .dropdown {
-			display: block;
+		.nav-tabs .dropdown-menu > a:last-child {
+			border-bottom: none;
+		}
+	
+		.nav-tabs a {
 			width: 100%;
 		}
 
@@ -751,9 +865,8 @@ input, select, textarea {
 			margin: 0;
 		}
 
-		.landing-wrapper .description-bar {
-			display: none;
-			font-size: 2em;
+		.landing-wrapper .description-bar p {
+			font-size: 0.8em;
 		}
 
 		.section-wrapper {
